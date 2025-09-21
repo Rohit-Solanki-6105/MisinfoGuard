@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MisinfoGuard</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🛡️ MisinfoGuard</h1>
+            <p>AI-Powered Misinformation Detection</p>
+        </div>
+        
+        <!-- API Key Setup Section -->
+        <div id="setup-section" class="section">
+            <h3>🔑 Setup Required</h3>
+            <p>Enter your Google Generative AI API key to get started:</p>
+            <div class="input-group">
+                <input type="password" id="api-key-input" placeholder="Paste your API key here..." />
+                <button id="save-key-btn" class="btn-primary">Save</button>
+            </div>
+            <div class="help-text">
+                <p>📝 <a href="https://makersuite.google.com/app/apikey" target="_blank">Get your API key here</a></p>
+                <p>🔒 Your key is stored locally and never shared</p>
+            </div>
+        </div>
+
+        <!-- Main Controls Section -->
+        <div id="main-section" class="section" style="display: none;">
+            <div class="status-card">
+                <div class="status-indicator">
+                    <span id="status-dot" class="status-dot active"></span>
+                    <span id="status-text">MisinfoGuard Active</span>
+                </div>
+                <button id="toggle-btn" class="btn-toggle">Disable</button>
+            </div>
+
+            <div class="feature-cards">
+                <div class="feature-card">
+                    <h4>🔍 Text Analysis</h4>
+                    <p>Highlight text to check for misinformation</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>🎯 Credibility Score</h4>
+                    <p>Get AI-powered credibility ratings</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>📚 Educational Insights</h4>
+                    <p>Learn why content may be misleading</p>
+                </div>
+            </div>
+
+            <div class="stats-section">
+                <h4>📊 Today's Activity</h4>
+                <div class="stats-grid">
+                    <div class="stat">
+                        <span class="stat-number" id="checks-today">0</span>
+                        <span class="stat-label">Checks</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" id="warnings-today">0</span>
+                        <span class="stat-label">Warnings</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <button id="clear-key-btn" class="btn-secondary">🔄 Change API Key</button>
+                <button id="settings-btn" class="btn-secondary">⚙️ Settings</button>
+            </div>
+        </div>
+
+        <!-- Loading Section -->
+        <div id="loading-section" class="section" style="display: none;">
+            <div class="loading-spinner"></div>
+            <p>Validating API key...</p>
+        </div>
+
+        <!-- Error Section -->
+        <div id="error-section" class="section" style="display: none;">
+            <div class="error-message">
+                <h3>❌ Error</h3>
+                <p id="error-text">Something went wrong. Please try again.</p>
+                <button id="retry-btn" class="btn-primary">Try Again</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

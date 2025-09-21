@@ -1,0 +1,86 @@
+<!-- Placeholder SVG icon for MisinfoGuard extension -->
+<!-- This is a text-based placeholder. For the actual extension, you'll need to create PNG icons -->
+<!-- Use this as a guide for creating proper icon files -->
+
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4f46e5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="shieldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f0f9ff;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="64" cy="64" r="60" fill="url(#bgGradient)" />
+  
+  <!-- Shield shape -->
+  <path d="M64 20 L44 28 L44 56 C44 76 64 92 64 92 C64 92 84 76 84 56 L84 28 Z" 
+        fill="url(#shieldGradient)" 
+        stroke="#1e40af" 
+        stroke-width="2"/>
+  
+  <!-- Checkmark inside shield -->
+  <path d="M54 56 L60 62 L74 48" 
+        stroke="#10b981" 
+        stroke-width="4" 
+        stroke-linecap="round" 
+        stroke-linejoin="round" 
+        fill="none"/>
+  
+  <!-- AI/Eye symbol in top right -->
+  <circle cx="78" cy="34" r="8" fill="#fbbf24" opacity="0.9"/>
+  <circle cx="78" cy="34" r="4" fill="#1f2937"/>
+  
+  <!-- Warning indicators -->
+  <circle cx="50" cy="40" r="2" fill="#ef4444" opacity="0.7"/>
+  <circle cx="78" cy="50" r="2" fill="#ef4444" opacity="0.7"/>
+</svg>
+
+<!-- 
+ICON CREATION GUIDE:
+===================
+
+To create proper PNG icons for your extension, you need to create the following sizes:
+- icon16.png (16x16 pixels)
+- icon32.png (32x32 pixels)  
+- icon48.png (48x48 pixels)
+- icon128.png (128x128 pixels)
+
+Tools you can use:
+1. Online SVG to PNG converters
+2. Design tools like Figma, Canva, or Adobe Illustrator
+3. AI image generators like DALL-E, Midjourney, or Stable Diffusion
+
+Design Guidelines:
+- Use a shield as the main symbol (represents protection)
+- Include AI/technology elements (eye, circuit patterns, or neural network icons)
+- Use the color scheme: Purple/blue gradient (#4f46e5 to #7c3aed)
+- Keep it simple and recognizable at small sizes
+- Ensure good contrast for visibility
+
+Alternative Design Ideas:
+1. Shield + magnifying glass (detection)
+2. Shield + warning triangle (alert system)
+3. Shield + checkmark/X (verification)
+4. Brain + shield (AI protection)
+5. Eye + shield (monitoring/watching)
+
+Steps to create icons:
+1. Save this SVG code to a file called "icon-template.svg"
+2. Use an online SVG to PNG converter (like svgtopng.com)
+3. Convert to each required size
+4. Save as icon16.png, icon32.png, icon48.png, icon128.png
+5. Place all files in the icons/ folder
+
+Quick online creation:
+- Go to canva.com or figma.com
+- Create a new design with custom dimensions (128x128)
+- Use shapes to create a shield
+- Add gradients and colors as specified above
+- Export as PNG for each size needed
+-->

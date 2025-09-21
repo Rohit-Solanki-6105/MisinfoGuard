@@ -1,0 +1,647 @@
+/* Content script styles for MisinfoGuard extension */
+
+/* Ensure our styles don't conflict with the host page */
+.misinfoguard-overlay,
+.misinfoguard-overlay *,
+#misinfoguard-quick-button,
+#misinfoguard-quick-button * {
+    all: initial;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+}
+
+/* Main overlay styling */
+.misinfoguard-overlay {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 999999 !important;
+    background: white !important;
+    border-radius: 20px !important;
+    box-shadow: 0 32px 64px rgba(0, 0, 0, 0.2), 0 8px 32px rgba(0, 0, 0, 0.15) !important;
+    max-width: 700px !important;
+    width: 90vw !important;
+    max-height: 90vh !important;
+    overflow: hidden !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    animation: misinfoguard-fadeInScale 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Overlay header */
+.misinfoguard-overlay .overlay-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    color: white !important;
+    padding: 24px 28px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    border-radius: 20px 20px 0 0 !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+}
+
+.misinfoguard-overlay .overlay-header h3 {
+    margin: 0 !important;
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    letter-spacing: -0.5px !important;
+}
+
+.misinfoguard-overlay .close-btn {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border: none !important;
+    color: white !important;
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 50% !important;
+    cursor: pointer !important;
+    font-size: 18px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: background-color 0.2s ease !important;
+}
+
+.misinfoguard-overlay .close-btn:hover {
+    background: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Overlay content */
+.misinfoguard-overlay .overlay-content {
+    padding: 0 !important;
+    overflow-y: auto !important;
+    max-height: calc(90vh - 100px) !important;
+    background: #fafbfc !important;
+}
+
+/* Analysis summary section */
+.misinfoguard-overlay .analysis-summary {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+    padding: 32px 28px !important;
+    border-bottom: 2px solid #e2e8f0 !important;
+}
+
+.misinfoguard-overlay .credibility-score {
+    display: flex !important;
+    align-items: center !important;
+    gap: 32px !important;
+    margin-bottom: 24px !important;
+}
+
+.misinfoguard-overlay .score-circle {
+    width: 100px !important;
+    height: 100px !important;
+    border-radius: 50% !important;
+    border: 6px solid #e2e8f0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: white !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
+    flex-shrink: 0 !important;
+    position: relative !important;
+}
+
+.misinfoguard-overlay .score-number {
+    font-size: 28px !important;
+    font-weight: 800 !important;
+    color: #1e293b !important;
+    line-height: 1 !important;
+    letter-spacing: -1px !important;
+}
+
+.misinfoguard-overlay .score-label {
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    color: #64748b !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    margin-top: 4px !important;
+}
+
+.misinfoguard-overlay .risk-indicator {
+    flex: 1 !important;
+}
+
+.misinfoguard-overlay .risk-level {
+    display: inline-block !important;
+    padding: 10px 20px !important;
+    border-radius: 25px !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    color: white !important;
+    margin-bottom: 12px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+.misinfoguard-overlay .risk-level.low {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+}
+
+.misinfoguard-overlay .risk-level.medium {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+}
+
+.misinfoguard-overlay .risk-level.high {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+}
+
+.misinfoguard-overlay .summary-text {
+    background: white !important;
+    padding: 20px 24px !important;
+    border-radius: 12px !important;
+    border-left: 4px solid #667eea !important;
+    margin-top: 20px !important;
+    font-size: 15px !important;
+    line-height: 1.7 !important;
+    color: #374151 !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08) !important;
+    font-weight: 500 !important;
+}
+
+/* Quick analyze button styles */
+#misinfoguard-quick-button {
+    position: absolute !important;
+    z-index: 2147483647 !important; /* Maximum z-index */
+    pointer-events: auto !important;
+    user-select: none !important;
+    transition: all 0.2s ease !important;
+}
+
+/* Animation keyframes */
+@keyframes misinfoguard-fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes misinfoguard-fadeInScale {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes misinfoguard-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Overlay backdrop */
+.misinfoguard-overlay::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+    animation: misinfoguard-fadeIn 0.3s ease-out;
+}
+
+@keyframes misinfoguard-fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Prevent text selection in overlay */
+.misinfoguard-overlay {
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+}
+
+/* Content sections */
+.misinfoguard-overlay .analyzed-text,
+.misinfoguard-overlay .issues-section,
+.misinfoguard-overlay .red-flags-section,
+.misinfoguard-overlay .recommendations-section,
+.misinfoguard-overlay .educational-section {
+    padding: 28px !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+    background: white !important;
+}
+
+.misinfoguard-overlay .analyzed-text {
+    background: #fefefe !important;
+    border-bottom: 2px solid #f1f5f9 !important;
+}
+
+.misinfoguard-overlay .analyzed-text h4 {
+    margin: 0 0 16px 0 !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: #1e293b !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    letter-spacing: -0.5px !important;
+}
+
+.misinfoguard-overlay .analyzed-text p {
+    background: #f8fafc !important;
+    padding: 20px 24px !important;
+    border-radius: 12px !important;
+    border: 1px solid #e2e8f0 !important;
+    font-size: 15px !important;
+    line-height: 1.7 !important;
+    color: #475569 !important;
+    margin: 0 !important;
+    font-style: italic !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Section headers */
+.misinfoguard-overlay h4 {
+    margin: 0 0 20px 0 !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: #1e293b !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    letter-spacing: -0.5px !important;
+    padding-bottom: 8px !important;
+    border-bottom: 2px solid #f1f5f9 !important;
+}
+
+/* Lists styling */
+.misinfoguard-overlay .issues-list,
+.misinfoguard-overlay .red-flags-list,
+.misinfoguard-overlay .recommendations-list,
+.misinfoguard-overlay .educational-list {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.misinfoguard-overlay .issues-list li {
+    background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%) !important;
+    border: 1px solid #fecaca !important;
+    border-radius: 12px !important;
+    padding: 16px 20px !important;
+    margin-bottom: 12px !important;
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 16px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+    font-weight: 500 !important;
+}
+
+.misinfoguard-overlay .red-flags-list li {
+    background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%) !important;
+    border: 1px solid #fed7aa !important;
+    border-radius: 12px !important;
+    padding: 16px 20px !important;
+    margin-bottom: 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 16px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+    font-weight: 500 !important;
+}
+
+.misinfoguard-overlay .recommendations-list li,
+.misinfoguard-overlay .educational-list li {
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%) !important;
+    border: 1px solid #bbf7d0 !important;
+    border-radius: 12px !important;
+    padding: 16px 20px !important;
+    margin-bottom: 12px !important;
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 16px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+    font-weight: 500 !important;
+}
+
+.misinfoguard-overlay .issues-list li:before {
+    content: "⚠️" !important;
+    flex-shrink: 0 !important;
+}
+
+.misinfoguard-overlay .red-flags-list li:before {
+    content: "🚩" !important;
+    flex-shrink: 0 !important;
+}
+
+.misinfoguard-overlay .recommendations-list li:before {
+    content: "💡" !important;
+    flex-shrink: 0 !important;
+}
+
+.misinfoguard-overlay .educational-list li:before {
+    content: "📚" !important;
+    flex-shrink: 0 !important;
+}
+
+.misinfoguard-overlay li {
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    color: #374151 !important;
+}
+
+/* Footer styling */
+.misinfoguard-overlay .overlay-footer {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+    padding: 24px 28px !important;
+    display: flex !important;
+    gap: 16px !important;
+    border-top: 2px solid #e2e8f0 !important;
+    border-radius: 0 0 20px 20px !important;
+}
+
+.misinfoguard-overlay .share-btn,
+.misinfoguard-overlay .learn-more-btn {
+    flex: 1 !important;
+    padding: 14px 20px !important;
+    border: none !important;
+    border-radius: 12px !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    letter-spacing: 0.5px !important;
+    text-transform: uppercase !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+.misinfoguard-overlay .share-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    color: white !important;
+}
+
+.misinfoguard-overlay .learn-more-btn {
+    background: white !important;
+    color: #667eea !important;
+    border: 2px solid #667eea !important;
+}
+
+.misinfoguard-overlay .share-btn:hover {
+    background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+.misinfoguard-overlay .learn-more-btn:hover {
+    background: #667eea !important;
+    color: white !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3) !important;
+}
+
+/* Loading section styling */
+.misinfoguard-overlay .loading-section {
+    padding: 40px 24px !important;
+    text-align: center !important;
+}
+
+.misinfoguard-overlay .loading-spinner {
+    width: 32px !important;
+    height: 32px !important;
+    border: 3px solid #e2e8f0 !important;
+    border-top: 3px solid #667eea !important;
+    border-radius: 50% !important;
+    animation: misinfoguard-spin 1s linear infinite !important;
+    margin: 0 auto 16px auto !important;
+}
+
+.misinfoguard-overlay .loading-section p {
+    font-size: 16px !important;
+    color: #64748b !important;
+    margin: 0 0 20px 0 !important;
+}
+
+/* Allow text selection in content areas */
+.misinfoguard-overlay .overlay-content,
+.misinfoguard-overlay .analyzed-text,
+.misinfoguard-overlay .analysis-text,
+.misinfoguard-overlay .issues-list,
+.misinfoguard-overlay .red-flags-list,
+.misinfoguard-overlay .recommendations-list,
+.misinfoguard-overlay .educational-list {
+    user-select: text !important;
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
+}
+
+/* Scrollbar styling for overlay */
+.misinfoguard-overlay::-webkit-scrollbar {
+    width: 8px !important;
+}
+
+.misinfoguard-overlay::-webkit-scrollbar-track {
+    background: #f1f5f9 !important;
+    border-radius: 4px !important;
+}
+
+.misinfoguard-overlay::-webkit-scrollbar-thumb {
+    background: #cbd5e1 !important;
+    border-radius: 4px !important;
+}
+
+.misinfoguard-overlay::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8 !important;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .misinfoguard-overlay {
+        width: 95vw !important;
+        max-width: none !important;
+        margin: 10px !important;
+    }
+    
+    .misinfoguard-overlay .overlay-header {
+        padding: 16px 20px !important;
+    }
+    
+    .misinfoguard-overlay .overlay-header h3 {
+        font-size: 16px !important;
+    }
+    
+    .misinfoguard-overlay .analysis-summary {
+        padding: 20px !important;
+    }
+    
+    .misinfoguard-overlay .credibility-score {
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        gap: 16px !important;
+    }
+    
+    .misinfoguard-overlay .score-circle {
+        width: 70px !important;
+        height: 70px !important;
+    }
+    
+    .misinfoguard-overlay .score-number {
+        font-size: 18px !important;
+    }
+    
+    .misinfoguard-overlay .analyzed-text,
+    .misinfoguard-overlay .issues-section,
+    .misinfoguard-overlay .red-flags-section,
+    .misinfoguard-overlay .recommendations-section,
+    .misinfoguard-overlay .educational-section {
+        padding: 20px !important;
+    }
+    
+    .misinfoguard-overlay .overlay-footer {
+        flex-direction: column !important;
+        padding: 16px 20px !important;
+    }
+    
+    .misinfoguard-overlay .share-btn,
+    .misinfoguard-overlay .learn-more-btn {
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .misinfoguard-overlay {
+        width: 100vw !important;
+        height: 100vh !important;
+        max-height: 100vh !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+        top: 0 !important;
+        left: 0 !important;
+        transform: none !important;
+    }
+    
+    .misinfoguard-overlay .overlay-header {
+        border-radius: 0 !important;
+    }
+    
+    .misinfoguard-overlay .overlay-footer {
+        border-radius: 0 !important;
+    }
+}
+
+/* Scrollbar styling for overlay */
+.misinfoguard-overlay::-webkit-scrollbar {
+    width: 8px;
+}
+
+.misinfoguard-overlay::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.misinfoguard-overlay::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+.misinfoguard-overlay::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 700px) {
+    .misinfoguard-overlay {
+        max-width: 95vw !important;
+        max-height: 90vh !important;
+        margin: 5vh 2.5vw !important;
+        top: 0 !important;
+        left: 0 !important;
+        transform: none !important;
+        position: fixed !important;
+        border-radius: 12px !important;
+    }
+    
+    .misinfoguard-overlay .analysis-summary {
+        grid-template-columns: 1fr !important;
+        text-align: center !important;
+        gap: 16px !important;
+    }
+    
+    .misinfoguard-overlay .overlay-footer {
+        flex-direction: column !important;
+    }
+    
+    #misinfoguard-quick-button {
+        max-width: 90vw !important;
+        left: 5vw !important;
+        min-width: 260px !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .misinfoguard-overlay {
+        border: 2px solid #000 !important;
+    }
+    
+    .misinfoguard-overlay .overlay-header {
+        background: #000 !important;
+        color: #fff !important;
+    }
+    
+    .misinfoguard-overlay .close-btn {
+        background: #fff !important;
+        color: #000 !important;
+        border: 1px solid #000 !important;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .misinfoguard-overlay,
+    #misinfoguard-quick-button,
+    .misinfoguard-overlay *,
+    #misinfoguard-quick-button * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* Focus management for accessibility */
+.misinfoguard-overlay button:focus,
+.misinfoguard-overlay input:focus {
+    outline: 2px solid #4f46e5 !important;
+    outline-offset: 2px !important;
+}
+
+/* Ensure overlay is always on top */
+.misinfoguard-overlay {
+    z-index: 2147483647 !important;
+}
+
+/* Print styles - hide overlay when printing */
+@media print {
+    .misinfoguard-overlay,
+    #misinfoguard-quick-button {
+        display: none !important;
+    }
+}

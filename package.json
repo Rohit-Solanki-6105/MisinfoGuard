@@ -1,0 +1,57 @@
+{
+  "name": "misinfoguard-extension",
+  "version": "1.0.0",
+  "description": "Development package for the MisinfoGuard browser extension",
+  "scripts": {
+    "build": "echo 'Extension is ready for loading'",
+    "test": "echo 'Manual testing required in browser'",
+    "lint": "echo 'Use browser developer tools for debugging'",
+    "package": "echo 'Zip the extension folder for distribution'"
+  },
+  "devDependencies": {
+    "note": "This extension uses vanilla JavaScript and doesn't require Node.js dependencies"
+  },
+  "browser_extension": {
+    "type": "Chrome Extension (Manifest V3)",
+    "target_browsers": ["Chrome 88+", "Edge 88+", "Opera 74+"],
+    "api_dependencies": ["Google Generative AI API"],
+    "permissions": ["storage", "activeTab", "scripting", "contextMenus"],
+    "content_security_policy": "script-src 'self'; object-src 'self'"
+  },
+  "development": {
+    "setup": [
+      "1. Load unpacked extension in browser",
+      "2. Get Google AI API key from makersuite.google.com",
+      "3. Configure API key in extension popup",
+      "4. Test on various websites"
+    ],
+    "testing": [
+      "Test text selection on news websites",
+      "Verify API calls in Network tab",
+      "Check console for errors",
+      "Test context menu functionality",
+      "Verify popup UI in different states"
+    ],
+    "debugging": [
+      "Open chrome://extensions/ for error logs",
+      "Use DevTools for content script debugging",
+      "Check background service worker logs",
+      "Monitor network requests to AI API"
+    ]
+  },
+  "repository": {
+    "type": "local",
+    "url": "file:///c:/Users/Rohit/Documents/gen-ai-hackathon/misinformation-detector-extension"
+  },
+  "keywords": [
+    "browser-extension",
+    "misinformation",
+    "fact-checking",
+    "ai",
+    "google-gemini",
+    "education",
+    "chrome-extension"
+  ],
+  "author": "Gen AI Hackathon Team",
+  "license": "MIT"
+}
